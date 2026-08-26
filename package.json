@@ -1,7 +1,7 @@
 {
   "name": "personio-mcp",
-  "version": "0.1.0",
-  "description": "MCP server for the Personio Recruiting API",
+  "version": "0.2.0",
+  "description": "MCP server for the Personio API (recruiting, employees, attendance, time-off, documents, custom reports)",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -19,6 +19,7 @@
   "keywords": [
     "mcp",
     "personio",
+    "hr",
     "recruiting"
   ],
   "license": "MIT",
