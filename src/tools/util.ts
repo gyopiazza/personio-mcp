@@ -16,3 +16,15 @@ export function errorContent(err: unknown) {
     isError: true,
   };
 }
+
+export function imageContent(data: ArrayBuffer, mimeType: string) {
+  return {
+    content: [
+      {
+        type: "image" as const,
+        data: Buffer.from(data).toString("base64"),
+        mimeType,
+      },
+    ],
+  };
+}
