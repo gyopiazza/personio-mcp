@@ -17,7 +17,7 @@ async function main(): Promise<void> {
 
   const server = new McpServer({
     name: 'personio-mcp',
-    version: '0.2.1',
+    version: '0.2.2',
   });
 
   server.registerTool(
