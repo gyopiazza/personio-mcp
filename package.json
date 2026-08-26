@@ -1,6 +1,6 @@
 {
   "name": "personio-mcp",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "MCP server for the Personio API (recruiting, employees, attendance, time-off, documents, custom reports)",
   "type": "module",
   "main": "dist/index.js",
@@ -14,14 +14,25 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "start": "node dist/index.js",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run build"
   },
   "keywords": [
     "mcp",
+    "mcp-server",
+    "modelcontextprotocol",
     "personio",
     "hr",
     "recruiting"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gyopiazza/personio-mcp.git"
+  },
+  "homepage": "https://github.com/gyopiazza/personio-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/gyopiazza/personio-mcp/issues"
+  },
   "license": "MIT",
   "engines": {
     "node": ">=20"
@@ -31,7 +42,7 @@
     "zod": "^4.1.13"
   },
   "devDependencies": {
-    "@types/node": "^24.10.1",
+    "@types/node": "^24.13.3",
     "typescript": "^5.9.3"
   }
 }

@@ -1,5 +1,7 @@
 # personio-mcp
 
+**The missing Personio MCP**
+
 > **Note:** This is a beta product and is not affiliated with Personio in any way.
 
 MCP server exposing Personio's public APIs as tools:
@@ -43,10 +45,10 @@ Base URL: `https://api.personio.de`
 
 ## Usage
 
+Requires Node.js 20+. Run directly with npx (no install needed):
+
 ```sh
-npm install
-npm run build
-PERSONIO_CLIENT_ID=... PERSONIO_CLIENT_SECRET=... PERSONIO_COMPANY_ID=... node dist/index.js
+PERSONIO_CLIENT_ID=... PERSONIO_CLIENT_SECRET=... PERSONIO_COMPANY_ID=... npx -y personio-mcp@latest
 ```
 
 ### Client config (e.g. Claude Desktop / opencode)
@@ -55,8 +57,8 @@ PERSONIO_CLIENT_ID=... PERSONIO_CLIENT_SECRET=... PERSONIO_COMPANY_ID=... node d
 {
   "mcpServers": {
     "personio": {
-      "command": "node",
-      "args": ["/path/to/personio-mcp/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "personio-mcp@latest"],
       "env": {
         "PERSONIO_CLIENT_ID": "...",
         "PERSONIO_CLIENT_SECRET": "...",
@@ -71,7 +73,7 @@ PERSONIO_CLIENT_ID=... PERSONIO_CLIENT_SECRET=... PERSONIO_COMPANY_ID=... node d
 
 The new ChatGPT desktop app supports local **STDIO** MCP servers and shares its
 MCP configuration with Codex CLI and the IDE extension (stored in
-`~/.codex/config.toml`). Build the server first (`npm install && npm run build`), then:
+`~/.codex/config.toml`).
 
 **Option A — via `config.toml` (recommended, since it lets you set env vars)**
 
@@ -79,8 +81,8 @@ Add this to `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.personio]
-command = "node"
-args = ["/path/to/personio-mcp/dist/index.js"]
+command = "npx"
+args = ["-y", "personio-mcp@latest"]
 
 [mcp_servers.personio.env]
 PERSONIO_CLIENT_ID = "..."
@@ -97,7 +99,7 @@ Then restart ChatGPT. Type `/mcp` in the composer to verify the server connected
 1. Open **Settings**, then select **MCP servers**.
 2. Select **Add server**.
 3. Enter a name (e.g. `personio`), choose **STDIO**, and set the command to
-   `node /path/to/personio-mcp/dist/index.js`.
+   `npx -y personio-mcp@latest`.
 4. Save, then select **Restart**.
 
 Note: if you go through the UI, set the credentials in your shell environment so the server

@@ -1,53 +1,55 @@
 #!/usr/bin/env node
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { loadConfig } from "./config.js";
-import { PersonioClient } from "./client.js";
-import { registerAllTools } from "./tools/index.js";
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { PersonioClient } from './client.js';
+import { loadConfig } from './config.js';
+import { registerAllTools } from './tools/index.js';
 
 async function main(): Promise<void> {
   const config = loadConfig();
   const client = new PersonioClient(
-    config.baseUrl.replace(/\/$/, ""),
+    config.baseUrl.replace(/\/$/, ''),
     config.clientId,
     config.clientSecret,
     config.companyId,
-    config.recruitingToken
+    config.recruitingToken,
   );
 
   const server = new McpServer({
-    name: "personio-mcp",
-    version: "0.1.0",
+    name: 'personio-mcp',
+    version: '0.2.1',
   });
 
   server.registerTool(
-    "personio_health_check",
+    'personio_health_check',
     {
-      title: "Health check",
+      title: 'Health check',
       description:
-        "Verify that the configured Personio credentials work by listing the first job category or job.",
+        'Verify that the configured Personio credentials work by listing the first job category or job.',
       inputSchema: {},
     },
     async () => {
       try {
         await client.listJobs({ limit: 1 });
         return {
-          content: [{ type: "text" as const, text: "Personio credentials are valid." }],
+          content: [
+            { type: 'text' as const, text: 'Personio credentials are valid.' },
+          ],
         };
       } catch (err) {
         return {
           content: [
             {
-              type: "text" as const,
+              type: 'text' as const,
               text:
-                "Personio credential check failed: " +
+                'Personio credential check failed: ' +
                 (err instanceof Error ? err.message : String(err)),
             },
           ],
           isError: true,
         };
       }
-    }
+    },
   );
 
   registerAllTools(server, client);
