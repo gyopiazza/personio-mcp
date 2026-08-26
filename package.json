@@ -1,6 +1,6 @@
 {
   "name": "personio-mcp",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "MCP server for the Personio API (recruiting, employees, attendance, time-off, documents, custom reports)",
   "type": "module",
   "main": "dist/index.js",
@@ -8,7 +8,8 @@
     "personio-mcp": "dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsc",
